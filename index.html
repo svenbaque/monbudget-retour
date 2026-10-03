@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex">
+  <title>MonBudget — retour banque</title>
+  <style>
+    body { font: 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; color: #1d2433; background: #f4f6f9; }
+    @media (prefers-color-scheme: dark) { body { color: #e6e9ef; background: #12151c; } a { color: #64a8f5; } }
+  </style>
+</head>
+<body>
+  <h2>Retour vers MonBudget…</h2>
+  <p id="msg">Redirection vers l'application sur ton Mac.</p>
+  <p id="fallback" hidden>Si rien ne se passe, vérifie que MonBudget est lancé sur ton Mac, puis <a id="link" href="#">clique ici</a>.</p>
+  <script>
+    // Cette page ne stocke et n'envoie rien : elle transmet le code à usage unique
+    // à l'appli locale, seule capable de l'utiliser (avec la clé privée restée sur le Mac).
+    var target = "http://localhost:8765/connexion/retour" + location.search;
+    document.getElementById("link").href = target;
+    setTimeout(function () { document.getElementById("fallback").hidden = false; }, 2500);
+    location.replace(target);
+  </script>
+</body>
+</html>
